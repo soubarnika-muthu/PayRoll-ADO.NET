@@ -10,7 +10,7 @@ namespace Emp_PayRoll_ADO.NET
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Implementaion of PayRoll service");
+            Console.WriteLine("Implementaion of PayRoll service using ADO.NET");
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Emp_PayRoll_ADO.NET
     class PayRoll_Service
     {
         /// <summary>
-        ///UC1- Creating the connection
+        ///UC1- Creating the connection to database
         /// </summary>
         public static string connectionString = "Data Source=(localdb)\\ProjectsV13;Initial Catalog=Employee_Payroll_Database";
         //creating the object for sql connection class
