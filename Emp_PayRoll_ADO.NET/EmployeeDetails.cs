@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Emp_PayRoll_ADO.NET
 {
-    class EmployeeDetails
+  public  class EmployeeDetails
     {
         public int employeeId { get; set; }
         public string employeeName { get; set; }

@@ -15,7 +15,7 @@ namespace Emp_PayRoll_ADO.NET
             bool Continue = true;
             while (Continue)
             {
-                Console.WriteLine("1.Retrive all data\n2.Update salary\n3.Exit");
+                Console.WriteLine("1.Retrive all data\n2.Update salary\n3.Display result between dates\n4.Exit");
                 Console.Write("Enter your choice:");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -27,6 +27,9 @@ namespace Emp_PayRoll_ADO.NET
                         payRoll.UpdateSalary();
                         break;
                     case 3:
+                        payRoll.DisplayDataBasedOnDate();
+                        break;
+                    case 4:
                         Continue = false;
                         break;
                     default:
