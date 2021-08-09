@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[RetrieveData]
+﻿CREATE PROCEDURE [dbo].[RetrieveDate]
 (
 	@startdate date,
 	@enddate date
