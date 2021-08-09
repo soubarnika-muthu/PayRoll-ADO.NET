@@ -154,34 +154,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Company.cs">
-      <DependentUpon>Emp_PayRollModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Department.cs">
-      <DependentUpon>Emp_PayRollModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Employee.cs">
-      <DependentUpon>Emp_PayRollModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="EmployeeDetails.cs" />
-    <Compile Include="Emp_PayRollModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Emp_PayRollModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Emp_PayRollModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Emp_PayRollModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Emp_PayRollModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Emp_PayRollModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="PayRollTable.cs">
-      <DependentUpon>Emp_PayRollModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="PayRoll_Service.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -189,26 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Emp_PayRollModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Emp_PayRollModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Emp_PayRollModel.edmx.diagram">
-      <DependentUpon>Emp_PayRollModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Emp_PayRollModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Emp_PayRollModel.edmx</DependentUpon>
-      <LastGenOutput>Emp_PayRollModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Emp_PayRollModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Emp_PayRollModel.edmx</DependentUpon>
-      <LastGenOutput>Emp_PayRollModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
