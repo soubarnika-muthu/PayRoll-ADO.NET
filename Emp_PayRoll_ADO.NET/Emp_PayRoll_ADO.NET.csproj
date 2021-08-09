@@ -154,6 +154,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DepartmentDetails.cs" />
+    <Compile Include="PayRollDetails.cs" />
+    <Compile Include="TransactionManagement.cs" />
     <Compile Include="EmployeeDetails.cs" />
     <Compile Include="PayRoll_Service.cs" />
     <Compile Include="Program.cs" />
