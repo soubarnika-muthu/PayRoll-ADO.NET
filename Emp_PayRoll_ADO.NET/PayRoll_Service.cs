@@ -231,8 +231,12 @@ namespace Emp_PayRoll_ADO.NET
                     sqlConnection.Close();
                 }
         }
+
+
+
     }
 }
+
 
 
 
