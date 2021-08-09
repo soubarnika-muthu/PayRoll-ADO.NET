@@ -20,7 +20,7 @@ namespace PayRollTest
         public void RetriveAllDetails()
         {
             //Assign
-            int expected = 7;
+            int expected = 8;
             //Act
             List<EmployeeDetails> list = payroll.GetAllData();
             int actual = list.Count();
@@ -42,7 +42,7 @@ namespace PayRollTest
         [TestMethod]
         public void DisplayDataBasedOnData()
         {
-            int expected = 3;
+            int expected = 6;
             DateTime startdate = new DateTime(2020, 07, 20);
             DateTime dateTime = new DateTime(2021, 07, 30);
             List<EmployeeDetails> list = payroll.DisplayDataBasedOnDate(startdate, dateTime);

@@ -154,17 +154,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddressBook.cs">
-      <DependentUpon>EmpPayrollModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AddressBookTable.cs">
-      <DependentUpon>EmpPayrollModel1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Company.cs">
       <DependentUpon>Emp_PayRollModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ContactType.cs">
-      <DependentUpon>EmpPayrollModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="Department.cs">
       <DependentUpon>Emp_PayRollModel.tt</DependentUpon>
@@ -173,21 +164,6 @@
       <DependentUpon>Emp_PayRollModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EmployeeDetails.cs" />
-    <Compile Include="EmpPayrollModel1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EmpPayrollModel1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EmpPayrollModel1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EmpPayrollModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EmpPayrollModel1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EmpPayrollModel1.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Emp_PayRollModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -213,13 +189,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="EmpPayrollModel1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EmpPayrollModel1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="EmpPayrollModel1.edmx.diagram">
-      <DependentUpon>EmpPayrollModel1.edmx</DependentUpon>
-    </None>
     <EntityDeploy Include="Emp_PayRollModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Emp_PayRollModel.Designer.cs</LastGenOutput>
@@ -230,16 +199,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EmpPayrollModel1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EmpPayrollModel1.Context.cs</LastGenOutput>
-      <DependentUpon>EmpPayrollModel1.edmx</DependentUpon>
-    </Content>
-    <Content Include="EmpPayrollModel1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EmpPayrollModel1.edmx</DependentUpon>
-      <LastGenOutput>EmpPayrollModel1.cs</LastGenOutput>
-    </Content>
     <Content Include="Emp_PayRollModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Emp_PayRollModel.edmx</DependentUpon>

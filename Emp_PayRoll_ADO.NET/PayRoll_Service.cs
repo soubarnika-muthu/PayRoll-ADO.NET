@@ -30,7 +30,7 @@ namespace Emp_PayRoll_ADO.NET
             EmployeeDetails employee = new EmployeeDetails();
             try
             {
-                //create the sql command object nd pass the querry and connection
+                ///create the sql command object nd pass the querry and connection
                 SqlCommand command = new SqlCommand(query, sqlConnection);
                 //create data reader 
                 SqlDataReader reader = command.ExecuteReader();
