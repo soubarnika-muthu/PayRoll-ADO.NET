@@ -108,11 +108,36 @@ namespace PayRollTest
         {
             int expected = 1;
             //Assign
-            EmployeeDetails employee = new EmployeeDetails { employeeId = 13, employeeName = "Tim", companyId = 1, departmentId = 3, phoneNumber = 8655535615, address = "MGRNagar", city = "madurai", state = "TamilNadu", startDate = new DateTime(2017-12-05), gender = "M", basicPay = 34000 };
+            EmployeeDetails employee = new EmployeeDetails { employeeId = 13, employeeName = "Tim", companyId = 1, departmentId = 3, phoneNumber = 8655535615, address = "MGRNagar", city = "madurai", state = "TamilNadu", startDate = "2017-12-05", gender = "M", basicPay = 34000 };
             TransactionManagement transaction = new TransactionManagement();
             int actual = transaction.AddingRecord(employee);
             Assert.AreEqual(expected, actual);
 
+        }
+
+        [TestMethod]
+        //UC12- Cascading delete
+        public void DeleteRecord()
+        {
+            int expected = 1;
+            int actual = new TransactionManagement().DeleteUsingCasadeDelete(4);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        //UC12- Cascading delete
+        public void AddindIsActiveField()
+        {
+            int expected = 1;
+            int actual = new TransactionManagement().AddIsActiveColumn();
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void RetrivingDataBasedOnIsActiveField()
+        {
+            int expected = 8;
+            List<EmployeeDetails> actual = new TransactionManagement().RetriveDataForAudit("Retrivealldata");
+            Assert.AreEqual(expected, actual.Count);
         }
     }
 }

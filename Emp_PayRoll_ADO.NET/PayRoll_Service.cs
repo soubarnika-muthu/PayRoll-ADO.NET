@@ -43,7 +43,7 @@ namespace Emp_PayRoll_ADO.NET
                         employee.employeeId = Convert.ToInt32(reader["id"]);
                         employee.employeeName = reader["name"].ToString();
                         employee.gender = reader["gender"].ToString();
-                        employee.startDate = reader.GetDateTime(2);
+                        employee.startDate = reader.GetDateTime(2).ToString();
                         employee.phoneNumber = Convert.ToDouble(reader["phoneNumber"]);
                         employee.address = reader.GetString(5);
                         employee.department = reader.GetString(6);
@@ -136,7 +136,7 @@ namespace Emp_PayRoll_ADO.NET
                             employee.employeeId = Convert.ToInt32(reader["id"]);
                             employee.employeeName = reader["name"].ToString();
                             employee.gender = reader["gender"].ToString();
-                            employee.startDate = reader.GetDateTime(2);
+                            employee.startDate = reader.GetDateTime(2).ToString();
                             employee.phoneNumber = Convert.ToDouble(reader["phoneNumber"]);
                             employee.address = reader.GetString(5);
                             employee.department = reader.GetString(6);
