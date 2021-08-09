@@ -26,6 +26,9 @@ namespace Emp_PayRoll_ADO.NET
         public double tax { get; set; }
         public double netPay { get; set; }
 
+        ////transaction
+        public int isActive { get; set; }
+
 
     }
 }
