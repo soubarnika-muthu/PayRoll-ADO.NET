@@ -139,6 +139,14 @@ namespace PayRollTest
             List<EmployeeDetails> actual = new TransactionManagement().RetriveDataForAudit("Retrivealldata");
             Assert.AreEqual(expected, actual.Count);
         }
+
+        //UC13-AddingMultipleList without Thread
+        [TestMethod]
+        public void TestInsertionWithoutThread()
+        {
+            long actual = new TransactionManagement().InsertWithoutThread();
+            Console.WriteLine("" + actual);
+        }
     }
 }
 
