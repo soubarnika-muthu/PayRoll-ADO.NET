@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Emp_PayRoll_ADO.NET
 {
@@ -13,9 +14,12 @@ namespace Emp_PayRoll_ADO.NET
         public static string connectionString = "Data Source=(localdb)\\ProjectsV13;Initial Catalog=Emp_Payroll_Database";
         //creating the object for sql connection class
         SqlConnection sqlConnection = new SqlConnection(connectionString);
+        private Object myLock = new Object();
+
+        //UC11-Insertion using transaction
         public int AddingRecord(EmployeeDetails employee)
         {
-            EmployeeDetails details = employee;
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
             PayRollDetails payRoll = new PayRollDetails(employee.basicPay);
             using (sqlConnection)
             {
@@ -33,6 +37,7 @@ namespace Emp_PayRoll_ADO.NET
                     new SqlCommand(employeeDepartmentInsertion, sqlConnection, transaction).ExecuteNonQuery();
                     //if all query is successfull commit
                     transaction.Commit();
+                    Thread.Sleep(1000);
                     return 1;
                 }
                 catch (Exception e)
@@ -98,7 +103,6 @@ namespace Emp_PayRoll_ADO.NET
                 }
             }
         }
-
         public List<EmployeeDetails> RetriveDataForAudit(string procedureName)
         {
             using (sqlConnection)
@@ -122,13 +126,21 @@ namespace Emp_PayRoll_ADO.NET
                             employee.employeeId = Convert.ToInt32(reader["emp_Id"] == DBNull.Value ? default : reader["emp_Id"]);
                             employee.employeeName = reader["emp_name"] == DBNull.Value ? default : reader["emp_name"].ToString();
                             employee.gender = reader["gender"] == DBNull.Value ? default : reader["gender"].ToString();
-                            employee.startDate = reader["startDate"] == DBNull.Value ? default : reader["startDate"].ToString() ; 
+                            employee.startDate = reader["startDate"] == DBNull.Value ? default : reader["startDate"].ToString(); ;
                             employee.phoneNumber = Convert.ToDouble(reader["phoneNumber"] == DBNull.Value ? default : reader["phoneNumber"]);
                             employee.address = reader["address"] == DBNull.Value ? default : reader["address"].ToString();
                             employee.netPay = Convert.ToDouble(reader["netPay"] == DBNull.Value ? default : reader["netPay"]);
                             employee.department = reader["dept_name"] == DBNull.Value ? default : reader["dept_name"].ToString();
                             //display the result
-                            Console.WriteLine("{0} {1} {2} {3} {4} {5} {6} ", employee.employeeId, employee.employeeName, employee.gender, employee.startDate, employee.phoneNumber, employee.address, employee.netPay);
+                            Thread thread = new Thread(() =>
+                            {
+                                Console.WriteLine("{0} {1} {2} {3} {4} {5} {6} ", employee.employeeId, employee.employeeName, employee.gender, employee.startDate, employee.phoneNumber, employee.address, employee.netPay);
+                                Console.WriteLine("Current thread:" + Thread.CurrentThread.Name);
+
+                            }
+                            );
+                            thread.Start();
+
                             employeeList.Add(employee);
                         }
                         reader.Close();
@@ -152,6 +164,7 @@ namespace Emp_PayRoll_ADO.NET
                 }
             }
         }
+
         public long InsertWithoutThread()
         {
             Stopwatch stopwatch = new Stopwatch();
@@ -161,27 +174,33 @@ namespace Emp_PayRoll_ADO.NET
             return (stopwatch.ElapsedMilliseconds);
 
         }
-        void AddDetails()
-        {
-            AddingRecord(new EmployeeDetails { employeeName = "jack", address = "xyz road", companyId = 2, city = "salem", state = "Kerala", startDate = "2014-12-30", gender = "M", phoneNumber = 8542361523, departmentId = 5, basicPay = 45000 });
-            AddingRecord(new EmployeeDetails { employeeName = "Sparro", address = "YMC road", companyId = 2, city = "Chennai", state = "TamilNadu", startDate = "2014-06-30", gender = "F", phoneNumber = 8542361523, departmentId = 4, basicPay = 15000 });
-            AddingRecord(new EmployeeDetails { employeeName = "Reddy", address = "RMK Street", companyId = 2, city = "Kottaiyam", state = "Kerala", startDate = "2017-12-30", gender = "M", phoneNumber = 8542361523, departmentId = 3, basicPay = 35000 });
-        }
-
         public long InsertWithThread()
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            Task thread = new Task(() =>
+            try
             {
-                AddingRecord(new EmployeeDetails { employeeId = 46, employeeName = "jack", address = "xyz road", companyId = 2, city = "salem", state = "Kerala", startDate = "2014-12-30", gender = "M", phoneNumber = 8542361523, departmentId = 5, basicPay = 45000 });
-                AddingRecord(new EmployeeDetails { employeeId = 44, employeeName = "Sparro", address = "YMC road", companyId = 2, city = "Chennai", state = "TamilNadu", startDate = "2014-06-30", gender = "F", phoneNumber = 8542361523, departmentId = 4, basicPay = 15000 });
-                AddingRecord(new EmployeeDetails { employeeId = 45, employeeName = "Reddy", address = "RMK Street", companyId = 2, city = "Kottaiyam", state = "Kerala", startDate = "2017-12-30", gender = "M", phoneNumber = 8542361523, departmentId = 3, basicPay = 35000 });
-            });
-            thread.Start();
-            stopwatch.Stop();
-            return stopwatch.ElapsedMilliseconds;
+                lock (myLock)
+                {
+                    List<EmployeeDetails> details = RetriveDataForAudit("Retrivealldata");
 
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                stopwatch.Stop();
+            }
+            return stopwatch.ElapsedMilliseconds;
+        }
+        void AddDetails()
+        {
+            AddingRecord(new EmployeeDetails { employeeId = 43, employeeName = "jack", address = "xyz road", companyId = 2, city = "salem", state = "Kerala", startDate = "2014-12-30", gender = "M", phoneNumber = 8542361523, departmentId = 5, basicPay = 45000 });
+            AddingRecord(new EmployeeDetails { employeeId = 44, employeeName = "Sparro", address = "YMC road", companyId = 2, city = "Chennai", state = "TamilNadu", startDate = "2014-06-30", gender = "F", phoneNumber = 8542361523, departmentId = 4, basicPay = 15000 });
+            AddingRecord(new EmployeeDetails { employeeId = 45, employeeName = "Reddy", address = "RMK Street", companyId = 2, city = "Kottaiyam", state = "Kerala", startDate = "2017-12-30", gender = "M", phoneNumber = 8542361523, departmentId = 3, basicPay = 35000 });
         }
     }
 }
