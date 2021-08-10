@@ -43,5 +43,14 @@ namespace Emp_PayRoll_ADO.NET
             var res = JsonConvert.DeserializeObject<EmployeeSalaryDetails>(response.Content);
             Console.WriteLine("" + res.id + "Added");
         }
+
+        //Adding multiple data to the server
+        public void AddingMultipleContactToServer(List<EmployeeSalaryDetails> employees)
+        {
+            foreach (var employee in employees)
+            {
+                WriteIntoJsonServer(employee);
+            }
+        }
     }
 }
