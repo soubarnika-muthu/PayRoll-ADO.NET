@@ -173,6 +173,14 @@ namespace PayRollTest
             List<EmployeeSalaryDetails> employeeList = new PayRollJsonServer().ReadFromServer();
             Assert.AreEqual(expected, employeeList.Count);
         }
+
+        //UC2-Adding single data to the json folder
+        [TestMethod]
+        public void WriteIntoServer()
+        {
+            EmployeeSalaryDetails employee = new EmployeeSalaryDetails { id = 4, name = "sou", salary = 56700 };
+            new PayRollJsonServer().WriteIntoJsonServer(employee);
+        }
     }
 }
 
