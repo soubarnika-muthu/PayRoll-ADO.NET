@@ -163,6 +163,16 @@ namespace PayRollTest
             long actual = new TransactionManagement().InsertWithThread();
             Console.WriteLine("" + actual);
         }
+
+        //-------------------Json server---------------
+        //UC1-Read data from server
+        [TestMethod]
+        public void ReadAllDataFromServer()
+        {
+            int expected = 3;
+            List<EmployeeSalaryDetails> employeeList = new PayRollJsonServer().ReadFromServer();
+            Assert.AreEqual(expected, employeeList.Count);
+        }
     }
 }
 
