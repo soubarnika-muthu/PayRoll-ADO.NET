@@ -67,5 +67,13 @@ namespace Emp_PayRoll_ADO.NET
             var res = JsonConvert.DeserializeObject<EmployeeSalaryDetails>(response.Content);
             return response.IsSuccessful;
         }
+
+        //delete the record from the server
+        public bool DeleteDatainjson(int id)
+        {
+            RestRequest request = new RestRequest("/employees/" + id, Method.DELETE);
+            IRestResponse response = client.Execute(request);
+            return (response.IsSuccessful);
+        }
     }
 }

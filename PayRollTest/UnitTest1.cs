@@ -208,6 +208,15 @@ namespace PayRollTest
             Assert.AreEqual(expected, actual);
         }
 
+        //UC5-Delete employee from the serever
+        [TestMethod]
+        public void DeleteEmployeeInJson()
+        {
+            bool expected = true;
+            bool actual = new PayRollJsonServer().DeleteDatainjson(4);
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
 
