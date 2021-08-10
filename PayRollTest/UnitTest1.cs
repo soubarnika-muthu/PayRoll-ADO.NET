@@ -3,6 +3,8 @@ using System;
 using Emp_PayRoll_ADO.NET;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
+using RestSharp;
 
 namespace PayRollTest
 {
@@ -169,7 +171,7 @@ namespace PayRollTest
         [TestMethod]
         public void ReadAllDataFromServer()
         {
-            int expected = 3;
+            int expected = 6;
             List<EmployeeSalaryDetails> employeeList = new PayRollJsonServer().ReadFromServer();
             Assert.AreEqual(expected, employeeList.Count);
         }
@@ -195,6 +197,17 @@ namespace PayRollTest
             employeeList = new PayRollJsonServer().ReadFromServer();
             Assert.AreEqual(6, employeeList.Count);
         }
+
+        //UC4-update salarydetail in server
+        [TestMethod]
+        public void UpdateSalaryinJson()
+        {
+            bool expected = true;
+            EmployeeSalaryDetails employee = new EmployeeSalaryDetails { id = 4, name = "sou", salary = 75000 };
+            bool actual = new PayRollJsonServer().UpdateValueInJsonServer(employee);
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
 
